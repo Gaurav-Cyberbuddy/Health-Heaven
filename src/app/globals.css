@@ -1,0 +1,314 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global polish */
+html { scroll-behavior: smooth; }
+::selection { background: rgba(14,165,233,.25); }
+
+@layer base {
+  :root {
+    /* Premium calm dark palette */
+    --bg: #0b0f19;
+    --surface: rgba(255,255,255,0.08);
+    --card: rgba(255,255,255,0.06);
+    --text: #e6e9f0;
+    --muted: #9aa3b2;
+    --primary: #7c3aed;
+    --primary-2: #22d3ee;
+    --danger: #ef4444;
+
+    /* shadcn variable mapping */
+    --background: 220 60% 7%;
+    --foreground: 220 25% 92%;
+    --card-foreground: 220 25% 92%;
+    --popover: 220 25% 10%;
+    --popover-foreground: 220 25% 92%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 10% 18%;
+    --secondary-foreground: 220 25% 92%;
+    --muted-foreground: 220 15% 65%;
+    --accent: 260 85% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 12% 22%;
+    --input: 220 12% 22%;
+    --ring: 190 90% 55%;
+    --chart-1: 260 85% 60%;
+    --chart-2: 190 90% 55%;
+    --chart-3: 210 80% 55%;
+    --chart-4: 160 70% 50%;
+    --chart-5: 340 75% 55%;
+    --radius: 1rem;
+    --sidebar-background: 220 25% 10%;
+    --sidebar-foreground: 220 25% 92%;
+    --sidebar-primary: 260 85% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 220 25% 92%;
+    --sidebar-border: 220 12% 22%;
+    --sidebar-ring: 190 90% 55%;
+  }
+  .dark {
+    /* Light mapping (if theme toggled) */
+    --bg: #f7f7fb;
+    --surface: #ffffff;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: var(--font-inter), 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    font-family: var(--font-inter), 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    @apply text-foreground;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,0.25), transparent),
+      radial-gradient(900px 500px at -10% 110%, rgba(34,211,238,0.18), transparent),
+      var(--bg);
+  }
+  
+  h1, h2, h3, h4 {
+    font-family: var(--font-manrope), 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h5, h6 {
+    font-family: var(--font-manrope), 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  p, span, div, a, button, input, textarea, select, label {
+    font-family: var(--font-inter), 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    letter-spacing: -0.005em;
+    line-height: 1.6;
+  }
+}
+
+/* Animations */
+@keyframes gradient-loop {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(5%, -3%, 0) scale(1.05); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: .7; filter: blur(32px); }
+  50% { opacity: 1; filter: blur(40px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: .6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartbeat-3d {
+  0%, 100% { 
+    transform: translateZ(8px) scale(1) rotateY(0deg);
+  }
+  10% { 
+    transform: translateZ(12px) scale(1.15) rotateY(5deg);
+  }
+  20% { 
+    transform: translateZ(8px) scale(1) rotateY(0deg);
+  }
+  30% { 
+    transform: translateZ(12px) scale(1.15) rotateY(-5deg);
+  }
+  40% { 
+    transform: translateZ(8px) scale(1) rotateY(0deg);
+  }
+  50% { 
+    transform: translateZ(10px) scale(1.08) rotateY(0deg);
+  }
+}
+
+@keyframes pulse-ring-1 {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring-2 {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes float-3d {
+  0%, 100% { 
+    transform: translateZ(20px) rotateY(0deg) rotateX(0deg);
+  }
+  25% { 
+    transform: translateZ(25px) rotateY(5deg) rotateX(-2deg);
+  }
+  50% { 
+    transform: translateZ(20px) rotateY(0deg) rotateX(0deg);
+  }
+  75% { 
+    transform: translateZ(25px) rotateY(-5deg) rotateX(2deg);
+  }
+}
+
+@keyframes pulse-heart {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-red {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-ring-heart {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring-heart-2 {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up { animation: fade-in-up 600ms ease-out both; }
+  .animate-gradient-loop { animation: gradient-loop 12s ease-in-out infinite; }
+  .animate-glow { animation: glow-pulse 8s ease-in-out infinite; }
+  .animate-pulse-slow { animation: pulse-slow 6s ease-in-out infinite; }
+  .animate-heartbeat-3d { animation: heartbeat-3d 1.2s ease-in-out infinite; }
+  .animate-pulse-ring-1 { animation: pulse-ring-1 1.2s ease-out infinite; }
+  .animate-pulse-ring-2 { animation: pulse-ring-2 1.2s ease-out infinite; animation-delay: 0.3s; }
+  .animate-float-3d { animation: float-3d 6s ease-in-out infinite; }
+  .animate-pulse-heart { animation: pulse-heart 1.2s ease-in-out infinite; }
+  .animate-pulse-red { animation: pulse-red 1.2s ease-in-out infinite; animation-delay: 0.15s; }
+  .animate-pulse-ring-heart { animation: pulse-ring-heart 1.2s ease-out infinite; }
+  .animate-pulse-ring-heart-2 { animation: pulse-ring-heart-2 1.2s ease-out infinite; animation-delay: 0.3s; }
+  .perspective-1000 { perspective: 1000px; }
+  .transform-style-preserve-3d { transform-style: preserve-3d; }
+  .glass { @apply bg-white/10 backdrop-blur-xl border border-white/10 shadow-xl; }
+  .btn-gradient {
+    @apply bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-400 text-white shadow hover:shadow-lg hover:brightness-110 transition-all;
+  }
+  .btn-outline-glass {
+    @apply bg-white/30 backdrop-blur-md border border-white/40 hover:bg-white/50 transition-all;
+  }
+  .card { @apply rounded-2xl p-6 bg-[var(--card)] border border-white/10 shadow; }
+  .motion-default { @apply transition-all duration-300 ease-out; }
+  .hover-glow { @apply hover:shadow-[0_12px_40px_rgba(124,58,237,0.35)]; }
+  .neon-card {
+    @apply bg-[#0b0f14]/70 border border-cyan-400/20 shadow-[0_0_24px_rgba(34,211,238,0.18)];
+  }
+  .neon-border {
+    @apply border border-cyan-400/30 hover:border-fuchsia-400/40 transition-colors;
+  }
+}
+
+/* Hide Clerk development banner/popup - comprehensive rules */
+[data-clerk-keyless-mode-banner],
+[data-clerk-keyless],
+.cl-keyless-mode-banner,
+.cl-keyless-banner,
+div[class*="keyless"]:not([class*="UserButton"]):not([class*="user"]),
+div[class*="Keyless"]:not([class*="UserButton"]):not([class*="user"]),
+[class*="clerk-banner"],
+[id*="clerk-banner"],
+[class*="clerk"][class*="banner"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: fixed !important;
+  z-index: -9999 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide any dialog/popup that contains Clerk keyless mode elements */
+[role="dialog"]:has([class*="keyless"]):not(:has([class*="UserButton"])),
+[role="dialog"]:has([data-clerk-keyless-mode-banner]),
+div[role="dialog"]:has([class*="keyless"]):not(:has([class*="UserButton"])) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
