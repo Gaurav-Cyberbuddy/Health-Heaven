@@ -116,18 +116,16 @@ const assessmentSummaryPrompt = ai.definePrompt({
 
   FORMAT YOUR RESPONSE EXACTLY LIKE THIS:
 
-  1. **Quick Assessment:**
+  Result:
   [2-3 sentences analyzing this specific food for the user's condition/objective]
-
-  2. **Star Rating:** X/10
+  Star Rating: X/10
   [Rating with brief justification based on user's needs]
-
-  3. **Overall Analysis:**
+  Overall Analysis:
   - Strengths: [Specific nutritional benefits with numbers]
   - Concerns: [Specific health concerns with numbers]
   - Safe consumption: [X grams or Y servings daily]
 
-  4. **Certified Proof:**
+  Proof:
   - "[WHO/FDA/USDA/AHA standard with specific numbers]"
   - "[Another global standard with specific numbers]"
 
